@@ -77,7 +77,6 @@ async function buildHandler(options: BuildOptions): Promise<BuildResultV3> {
   const buildVariant = meta?.isDev ? 'debug' : 'release';
   const buildTarget = cargoBuildConfiguration?.build.target ?? '';
 
-  debug(`Running \`cargo build\` for \`${binaryName}\``);
   try {
     // If we are not building on Vercel (it means we are building for a prebuilt deployment),
     // We cross-compile it for linux x86_64 using `zigbuild`
@@ -95,6 +94,13 @@ async function buildHandler(options: BuildOptions): Promise<BuildResultV3> {
           BUILDER_DEBUG ? ['--verbose'] : ['--quiet'],
           meta?.isDev ? [] : ['--release']
         );
+
+    debug(`Cross compilation enabled: ${crossCompilationEnabled}`);
+    debug(
+      `Running \`cargo build\` for \`${binaryName}\` \`${architecture}\` with args: ${args.join(
+        ' '
+      )}`
+    );
 
     await execa('cargo', args, {
       cwd: workPath,
