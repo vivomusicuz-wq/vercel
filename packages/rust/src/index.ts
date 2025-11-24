@@ -147,6 +147,7 @@ async function buildHandler(options: BuildOptions): Promise<BuildResultV3> {
     supportsResponseStreaming: true,
     architecture,
     runtime: 'executable',
+    runtimeLanguage: 'rust',
   });
   lambda.zipBuffer = await lambda.createZip();
 
