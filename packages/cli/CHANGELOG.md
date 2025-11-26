@@ -1,5 +1,11 @@
 # vercel
 
+## 48.11.0
+
+### Minor Changes
+
+- Prompt to pull environment variables after successful project linking ([#13697](https://github.com/vercel/vercel/pull/13697))
+
 ## 48.10.14
 
 ### Patch Changes
